@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instagram運用 × ライティング × 導線設計 | あらた</title>
+  <meta name="description" content="Instagram運用・ライティング・導線設計を一体で整理し、投稿だけで終わらない集客導線を整えるポートフォリオサイト。中小企業・個人事業主・店舗系の発信支援に対応。" />
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: #0d1830;
+      --surface: rgba(10, 18, 34, 0.72);
+      --surface-strong: rgba(14, 24, 45, 0.92);
+      --line: rgba(255, 255, 255, 0.10);
+      --line-strong: rgba(255, 255, 255, 0.18);
+      --text: #f6f8ff;
+      --muted: #b8c3da;
+      --accent: #7c5cff;
+      --accent-2: #ff4fa0;
+      --accent-3: #59d3ff;
+      --good: #25c48b;
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.30);
+      --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.18);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1180px;
+      --header-h: 78px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 18px); }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Inter", "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+      line-height: 1.75;
+      background:
+        radial-gradient(circle at 8% 8%, rgba(124, 92, 255, 0.24), transparent 24%),
+        radial-gradient(circle at 88% 12%, rgba(255, 79, 160, 0.16), transparent 20%),
+        radial-gradient(circle at 70% 32%, rgba(89, 211, 255, 0.12), transparent 18%),
+        linear-gradient(180deg, var(--bg), var(--bg-soft));
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 38vw;
+      height: 38vw;
+      border-radius: 999px;
+      filter: blur(92px);
+      z-index: -2;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    body::before {
+      top: -8vw;
+      left: -8vw;
+      background: linear-gradient(135deg, var(--accent), transparent 68%);
+      animation: floatGlow 10s ease-in-out infinite;
+    }
+
+    body::after {
+      right: -9vw;
+      bottom: -10vw;
+      background: linear-gradient(135deg, var(--accent-2), transparent 68%);
+      animation: floatGlow 13s ease-in-out infinite reverse;
+    }
+
+    @keyframes floatGlow {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(2vw, -1vw, 0) scale(1.06); }
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    main section[id] { scroll-margin-top: calc(var(--header-h) + 18px); }
+
+    h1, h2, h3,
+    .brand span,
+    .nav a,
+    .btn,
+    .contact-note,
+    .form-note {
+      overflow-wrap: anywhere;
+    }
+
+    .hero-copy,
+    .hero-visual,
+    .screen,
+    .screen-card,
+    .contact-card,
+    .service-card,
+    .issue-card,
+    .insight-card,
+    .proof,
+    .profile-box,
+    .cta-box,
+    .timeline-step,
+    .faq-item {
+      min-width: 0;
+    }
+
+    .container {
+      width: min(calc(100% - 28px), var(--max));
+      margin: 0 auto;
+    }
+
+    .section { padding: 96px 0; }
+    .section.compact { padding: 76px 0; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: var(--header-h);
+      display: flex;
+      align-items: center;
+      background: rgba(7, 17, 31, 0.56);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      position: relative;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+      max-width: min(72vw, 430px);
+    }
+
+    .brand strong { font-size: 1rem; letter-spacing: -0.02em; }
+    .brand span { font-size: 0.84rem; color: var(--muted); line-height: 1.4; }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: #dbe4f8;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: .2s ease;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .nav .cta-link {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      box-shadow: 0 14px 28px rgba(124, 92, 255, 0.24);
+    }
+
+    .menu-btn {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.08);
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .menu-btn span,
+    .menu-btn span::before,
+    .menu-btn span::after {
+      content: "";
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #fff;
+      border-radius: 999px;
+      position: relative;
+      margin: 0 auto;
+      transition: .2s ease;
+    }
+
+    .menu-btn span::before { position: absolute; top: -6px; }
+    .menu-btn span::after { position: absolute; top: 6px; }
+    .menu-btn.open span { background: transparent; }
+    .menu-btn.open span::before { top: 0; transform: rotate(45deg); }
+    .menu-btn.open span::after { top: 0; transform: rotate(-45deg); }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: #dfe7ff;
+      font-size: 0.92rem;
+      font-weight: 700;
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .label::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 7px rgba(124, 92, 255, 0.14);
+    }
+
+    h1, h2, h3 { margin: 0 0 14px; line-height: 1.1; letter-spacing: -0.03em; }
+    h1 { font-size: clamp(2.8rem, 5.4vw, 5.6rem); }
+    h2 { font-size: clamp(2rem, 3.1vw, 3.2rem); }
+    h3 { font-size: clamp(1.06rem, 1.7vw, 1.35rem); }
+    p { margin: 0 0 16px; color: var(--muted); }
+
+    .hero {
+      padding: 76px 0 54px;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(330px, 0.82fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-visual,
+    .card,
+    .mini-card,
+    .proof,
+    .faq-item,
+    .timeline-step,
+    .contact-card,
+    .service-card,
+    .issue-card,
+    .insight-card,
+    .cta-box,
+    .profile-box {
+      border: 1px solid var(--line);
+      background: rgba(10, 18, 34, 0.72);
+      backdrop-filter: blur(22px);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius-xl);
+    }
+
+    .hero-copy {
+      padding: clamp(28px, 4vw, 46px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% -45% auto;
+      width: 240px;
+      height: 240px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(124, 92, 255, 0.40), transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-lead {
+      max-width: 720px;
+      font-size: clamp(1.05rem, 1.8vw, 1.18rem);
+      color: #d5def3;
+    }
+
+    .hero-note {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.05);
+      color: #dbe4f8;
+      font-size: 0.96rem;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 54px;
+      padding: 0 22px;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 0.98rem;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 16px 34px rgba(124, 92, 255, 0.26);
+    }
+
+    .btn-secondary {
+      color: #fff;
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .hero-trust {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .mini-card {
+      padding: 18px;
+      min-height: 130px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      color: #fff;
+    }
+
+    .mini-card p {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .hero-visual {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(160deg, rgba(124, 92, 255, 0.16), rgba(255, 79, 160, 0.08)),
+        rgba(12, 21, 39, 0.86);
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: -40% auto auto 58%;
+      width: 220px;
+      height: 220px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(255, 79, 160, 0.26), transparent 70%);
+      pointer-events: none;
+    }
+
+    .screen {
+      position: relative;
+      padding: 18px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(8, 14, 26, 0.96), rgba(17, 29, 54, 0.94));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), var(--shadow-soft);
+    }
+
+    .screen-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .dots { display: flex; gap: 8px; }
+    .dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.30);
+    }
+
+    .screen-title {
+      color: #e9efff;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .screen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .screen-card {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.05);
+      min-height: 128px;
+    }
+
+    .screen-card small {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: #cbd7f3;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .screen-card strong {
+      display: block;
+      font-size: 1.04rem;
+      margin-bottom: 8px;
+    }
+
+    .screen-card p {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .visual-points {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .visual-points div {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #dbe4f8;
+      font-size: 0.93rem;
+    }
+
+    .visual-points strong { color: #fff; }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 38px;
+    }
+
+    .section-head p { font-size: 1.05rem; }
+
+    .issues,
+    .insight-grid,
+    .service-grid,
+    .proof-grid,
+    .faq-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .issues { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .insight-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .proof-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .faq-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .issue-card,
+    .insight-card,
+    .service-card,
+    .proof {
+      padding: 24px;
+    }
+
+    .issue-card h3,
+    .insight-card h3,
+    .service-card h3,
+    .proof h3 { margin-bottom: 12px; }
+
+    .issue-card p,
+    .insight-card p,
+    .service-card p,
+    .proof p { margin: 0; font-size: 0.95rem; }
+
+    .card-number {
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      margin-bottom: 16px;
+      color: #fff;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 12px 24px rgba(124, 92, 255, 0.22);
+    }
+
+    .service-card ul,
+    .profile-points,
+    .flow-list,
+    .faq-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .service-card ul { margin-top: 14px; display: grid; gap: 10px; }
+    .service-card li,
+    .profile-points li,
+    .flow-list li,
+    .faq-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: #d7e0f4;
+    }
+
+    .service-card li::before,
+    .profile-points li::before,
+    .flow-list li::before,
+    .faq-list li::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      flex: 0 0 10px;
+      margin-top: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-3));
+      box-shadow: 0 0 0 5px rgba(124, 92, 255, 0.12);
+    }
+
+    .strategy-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .profile-box,
+    .contact-card,
+    .cta-box,
+    .faq-item,
+    .timeline-step {
+      padding: 28px;
+    }
+
+    .profile-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      color: #dbe4f8;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      margin-bottom: 18px;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .timeline-step strong {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 12px 24px rgba(124, 92, 255, 0.22);
+    }
+
+    .timeline-step p { margin: 0; font-size: 0.94rem; }
+
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: "+";
+      font-size: 1.35rem;
+      line-height: 1;
+      color: #dfe7ff;
+      transition: transform .2s ease;
+    }
+
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item p { margin: 14px 0 0; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #eef3ff;
+    }
+
+    .field small {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.11);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      border-radius: 16px;
+      padding: 15px 16px;
+      font: inherit;
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+      appearance: none;
+      -webkit-appearance: none;
+      font-size: 16px;
+    }
+
+    .field select {
+      background-image:
+        linear-gradient(45deg, transparent 50%, #dce5ff 50%),
+        linear-gradient(135deg, #dce5ff 50%, transparent 50%);
+      background-position:
+        calc(100% - 22px) calc(50% - 3px),
+        calc(100% - 16px) calc(50% - 3px);
+      background-size: 7px 7px, 7px 7px;
+      background-repeat: no-repeat;
+      padding-right: 44px;
+    }
+
+    .field select option {
+      color: #111827;
+      background: #fff;
+    }
+
+    .field textarea {
+      min-height: 180px;
+      resize: vertical;
+      line-height: 1.75;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: rgba(124, 92, 255, 0.78);
+      box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.16);
+      background: rgba(255,255,255,0.07);
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .form-note,
+    .contact-note {
+      color: #d8e2f6;
+      font-size: 0.92rem;
+    }
+
+    .contact-note {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .contact-side {
+      display: grid;
+      gap: 18px;
+    }
+
+    .contact-side .contact-card p:last-child { margin-bottom: 0; }
+
+    .cta-box {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+      background:
+        linear-gradient(135deg, rgba(124, 92, 255, 0.22), rgba(255, 79, 160, 0.16)),
+        rgba(10, 18, 34, 0.82);
+    }
+
+    .cta-box p { margin-bottom: 0; }
+
+    footer {
+      padding: 34px 0 48px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .strategy-wrap,
+      .contact-grid,
+      .cta-box {
+        grid-template-columns: 1fr;
+      }
+
+      .issues,
+      .insight-grid,
+      .proof-grid,
+      .timeline,
+      .faq-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 820px) {
+      .container { width: min(calc(100% - 24px), var(--max)); }
+      .site-header { height: auto; padding: 14px 0; }
+      .header-inner { align-items: center; gap: 12px; }
+      .brand { max-width: calc(100% - 62px); }
+      .brand strong { font-size: 0.98rem; }
+      .brand span { font-size: 0.78rem; }
+      .menu-btn { display: inline-flex; align-items: center; justify-content: center; }
+      .nav {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        display: none;
+        padding: 12px;
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,0.08);
+        background: rgba(9, 17, 32, 0.96);
+        box-shadow: var(--shadow);
+        max-height: min(72vh, 520px);
+        overflow: auto;
+      }
+
+      .nav.open { display: grid; gap: 8px; }
+      .nav a {
+        width: 100%;
+        min-height: 46px;
+        display: flex;
+        align-items: center;
+      }
+
+      .hero {
+        padding-top: 34px;
+        padding-bottom: 30px;
+      }
+
+      .hero-grid { gap: 18px; }
+      .hero-copy,
+      .hero-visual,
+      .profile-box,
+      .contact-card,
+      .cta-box,
+      .timeline-step,
+      .faq-item,
+      .issue-card,
+      .insight-card,
+      .service-card,
+      .proof {
+        padding: 24px;
+      }
+
+      .hero-copy h1 br { display: none; }
+      .hero-lead,
+      .section-head p { font-size: 1rem; }
+      .section-head { margin-bottom: 28px; }
+
+      .hero-trust,
+      .service-grid,
+      .issues,
+      .insight-grid,
+      .proof-grid,
+      .timeline,
+      .faq-grid,
+      .screen-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .screen { padding: 16px; }
+      .screen-card { min-height: auto; }
+      .cta-box { text-align: left; }
+    }
+
+    @media (max-width: 560px) {
+      .container { width: min(calc(100% - 18px), var(--max)); }
+      .section { padding: 64px 0; }
+      .section.compact { padding: 56px 0; }
+      .hero {
+        padding-top: 24px;
+        padding-bottom: 24px;
+      }
+
+      h1 { font-size: clamp(2.1rem, 10vw, 3rem); }
+      h2 { font-size: clamp(1.7rem, 8vw, 2.2rem); }
+
+      .site-header { padding: 10px 0; }
+      .brand { max-width: calc(100% - 58px); }
+
+      .hero-copy,
+      .hero-visual,
+      .profile-box,
+      .contact-card,
+      .cta-box,
+      .timeline-step,
+      .faq-item,
+      .issue-card,
+      .insight-card,
+      .service-card,
+      .proof {
+        padding: 20px;
+        border-radius: 22px;
+      }
+
+      .mini-card {
+        min-height: auto;
+        padding: 16px;
+      }
+
+      .field label { font-size: 0.92rem; }
+      .field input,
+      .field select,
+      .field textarea {
+        padding: 14px 15px;
+        border-radius: 14px;
+      }
+
+      .field textarea { min-height: 160px; }
+      .contact-note { padding: 12px 14px; }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .form-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 420px) {
+      .label {
+        padding: 8px 12px;
+        gap: 8px;
+        font-size: 0.84rem;
+      }
+
+      .menu-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+      }
+
+      .hero-trust { gap: 12px; }
+      .screen-top { margin-bottom: 12px; }
+      .visual-points div { padding: 13px 14px; }
+    }
+
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="ページ上部へ移動">
+        <strong>あらた</strong>
+        <span>Instagram運用 × ライティング × 導線設計</span>
+      </a>
+
+      <button class="menu-btn" id="menuBtn" aria-label="メニューを開く" aria-controls="siteNav" aria-expanded="false">
+        <span></span>
+      </button>
+
+      <nav class="nav" id="siteNav">
+        <a href="#issues">課題</a>
+        <a href="#services">提供内容</a>
+        <a href="#strengths">強み</a>
+        <a href="#profile">プロフィール</a>
+        <a href="#contact" class="cta-link">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="label">Instagram運用を、投稿作業ではなく集客導線として整える</span>
+          <h1>投稿だけで終わらない。<br>Instagramを<strong style="font-weight:800;">相談につながる形</strong>へ。</h1>
+          <p class="hero-lead">
+            中小企業・個人事業主・店舗系の方に向けて、Instagram運用・ライティング・導線設計を一体で支援しています。
+            見た目だけの発信ではなく、<strong style="color:#fff; font-weight:700;">誰に・何を・どう伝え・どこへ着地させるか</strong>まで整理し、継続しやすくお問い合わせにつながりやすい運用へ整えます。
+          </p>
+          <div class="hero-note">
+            投稿案の作成だけでなく、キャプション、プロフィール、CTA、導線まで含めて整理したい方に向いています。
+          </div>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="#contact">相談してみる</a>
+            <a class="btn btn-secondary" href="#services">提供内容を見る</a>
+          </div>
+          <div class="hero-trust">
+            <div class="mini-card">
+              <strong>企画・文章・導線を一体で整理</strong>
+              <p>投稿だけでなく、伝え方と着地点まで含めて設計します。</p>
+            </div>
+            <div class="mini-card">
+              <strong>曖昧な運用を言語化</strong>
+              <p>発信の方向性、訴求軸、導線の抜け漏れを整理します。</p>
+            </div>
+            <div class="mini-card">
+              <strong>誇張せず、必要なことだけ提案</strong>
+              <p>できることと、やるべきことを明確にしたうえで進めます。</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-visual" aria-label="支援イメージ">
+          <div class="screen">
+            <div class="screen-top">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div class="screen-title">Instagram Strategy Overview</div>
+            </div>
+            <div class="screen-grid">
+              <div class="screen-card">
+                <small>01 TARGET</small>
+                <strong>誰に届けるか</strong>
+                <p>見込み客の悩み、ニーズ、反応しやすい言葉を整理。</p>
+              </div>
+              <div class="screen-card">
+                <small>02 MESSAGE</small>
+                <strong>何を伝えるか</strong>
+                <p>発信テーマ、訴求軸、信頼の作り方を設計。</p>
+              </div>
+              <div class="screen-card">
+                <small>03 ACTION</small>
+                <strong>どう動いてもらうか</strong>
+                <p>CTA、プロフィール、導線を見直し、相談までの流れを整備。</p>
+              </div>
+              <div class="screen-card">
+                <small>04 FLOW</small>
+                <strong>どう継続するか</strong>
+                <p>更新しやすい運用設計に落とし込み、止まりにくい状態へ。</p>
+              </div>
+            </div>
+          </div>
+          <div class="visual-points">
+            <div><strong>投稿だけ作る人</strong>ではなく、発信全体を整理する役割として支援します。</div>
+            <div><strong>Instagram運用 × ライティング × 導線設計</strong> を一貫した軸として扱います。</div>
+            <div><strong>店舗・個人事業主・中小企業</strong> の発信支援を想定した構成です。</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section compact" id="issues">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">よくある課題</span>
+          <h2>こんなお悩みはありませんか？</h2>
+          <p>
+            Instagram運用は、投稿を増やすだけでは前に進みにくいことがあります。
+            発信の方向性、言葉、プロフィール、着地点まで含めて整えることで、ようやく運用が機能しやすくなります。
+          </p>
+        </div>
+
+        <div class="issues">
+          <article class="issue-card">
+            <div class="card-number">01</div>
+            <h3>何を発信すべきかが曖昧</h3>
+            <p>投稿テーマが毎回ぶれ、誰に向けた発信かが見えにくくなっている状態です。</p>
+          </article>
+          <article class="issue-card">
+            <div class="card-number">02</div>
+            <h3>続けているのにお問い合わせにつながらない</h3>
+            <p>発信内容と導線が噛み合っておらず、見られても次の行動に進みにくいケースです。</p>
+          </article>
+          <article class="issue-card">
+            <div class="card-number">03</div>
+            <h3>プロフィールやCTAが弱い</h3>
+            <p>何をしているアカウントなのか、どう相談すればよいのかが伝わりにくくなっています。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="strengths">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">支援の考え方</span>
+          <h2>Instagramを、発信ではなく<br>集客の流れとして見ています。</h2>
+          <p>
+            大切なのは、投稿を作ること自体ではありません。
+            誰に届けるか、何を伝えるか、どう動いてもらうか、その後どこへ着地させるか。
+            この流れを整理することで、発信の精度とお問い合わせ導線の両方を整えます。
+          </p>
+        </div>
+
+        <div class="insight-grid">
+          <article class="insight-card">
+            <div class="card-number">A</div>
+            <h3>誰に向けるかを明確にする</h3>
+            <p>相手像が曖昧なままだと、投稿の言葉も弱くなります。まずは届ける相手を整理します。</p>
+          </article>
+          <article class="insight-card">
+            <div class="card-number">B</div>
+            <h3>伝える内容を絞る</h3>
+            <p>情報を増やしすぎず、相手にとって価値の高いテーマへ絞ることで、伝わりやすさが上がります。</p>
+          </article>
+          <article class="insight-card">
+            <div class="card-number">C</div>
+            <h3>相談までの導線を整える</h3>
+            <p>プロフィール、CTA、着地点がつながっていなければ、発信は見られても動きにはつながりません。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact" id="services">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">提供内容</span>
+          <h2>対応している内容</h2>
+          <p>
+            「何でもできます」という見せ方はしていません。
+            Instagram運用に必要な範囲を、企画・文章・導線の3つに絞って支援しています。
+          </p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card">
+            <h3>発信設計</h3>
+            <p>誰に、何を、どう伝えるかを整理し、発信の軸を定めます。</p>
+            <ul>
+              <li>ターゲット整理</li>
+              <li>発信テーマ設計</li>
+              <li>訴求軸の言語化</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <h3>投稿企画・ライティング</h3>
+            <p>投稿案やキャプションを、読みやすさと行動導線の両面から設計します。</p>
+            <ul>
+              <li>投稿ネタ整理</li>
+              <li>キャプション作成</li>
+              <li>CTA文言の最適化</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <h3>プロフィール改善</h3>
+            <p>アカウントを見た人が、何のアカウントで、どう相談すればよいかを理解しやすい状態へ整えます。</p>
+            <ul>
+              <li>プロフィール文の見直し</li>
+              <li>ハイライト導線の整理</li>
+              <li>第一印象の明確化</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <h3>導線設計</h3>
+            <p>Instagramの先にある問い合わせや申込みまで見据え、着地点を整理します。</p>
+            <ul>
+              <li>お問い合わせ導線の設計</li>
+              <li>LP・Webの視点を踏まえた改善</li>
+              <li>運用しやすい形への整理</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="container strategy-wrap">
+        <div class="profile-box">
+          <span class="label">選ばれる理由</span>
+          <h2 style="margin-top:16px;">任せやすさは、実績の量だけでなく<br>整理力と進め方でも作れます。</h2>
+          <p>
+            現時点で、実績を大きく見せるための誇張表現はしていません。
+            その代わりに、何をどう整理し、どこまで対応できるかを明確にしています。
+            依頼前の不安を減らすことを重視した進め方です。
+          </p>
+          <ul class="profile-points">
+            <li>投稿だけでなく、プロフィールや導線まで含めて見直せます。</li>
+            <li>ライティングの視点から、伝わる言葉とCTAを整理します。</li>
+            <li>LP作成・Web作成の経験を、着地点の設計に活かしています。</li>
+            <li>できること・できないことを曖昧にせず、正直にお伝えします。</li>
+          </ul>
+        </div>
+
+        <div class="profile-box">
+          <span class="label">対応経験</span>
+          <h2 style="margin-top:16px;">Instagram運用を軸に、<br>周辺の導線まで見ています。</h2>
+          <p>
+            これまでに対応してきた領域は、Instagram / SNS運用、ライティング、LP作成、Web作成です。
+            それぞれを別のスキルとして並べるのではなく、Instagramの集客導線を整えるための要素として扱っています。
+          </p>
+          <ul class="profile-points">
+            <li>Instagram / SNS運用</li>
+            <li>ライティング / ブログ記事作成</li>
+            <li>LP作成</li>
+            <li>Web作成</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact" id="profile">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">プロフィール</span>
+          <h2>あらたについて</h2>
+          <p>
+            年齢を前面に出すのではなく、課題整理、言語化、進め方の明確さで信頼していただけることを大切にしています。
+          </p>
+        </div>
+
+        <div class="profile-box">
+          <div class="profile-meta">17歳 / 高校生 / Instagram運用 × ライティング × 導線設計</div>
+          <p>
+            はじめまして。あらたです。
+            Instagram運用・ライティング・導線設計を軸に、中小企業・個人事業主・店舗系の発信支援を行っています。
+          </p>
+          <p>
+            現在17歳の高校生として学業と並行しながら活動していますが、若さを売りにしたいとは考えていません。
+            実務で重視しているのは、相手の課題を整理すること、必要な情報を言葉に落とし込むこと、そして依頼後の流れを明確にすることです。
+          </p>
+          <p>
+            Instagram運用は、投稿だけ整えても成果につながりにくいことがあります。
+            誰に向けて発信するのか、何を伝えるのか、どうお問い合わせにつなげるのかまで一体で整理することで、運用はより機能しやすくなると考えています。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">ご相談の流れ</span>
+          <h2>ご依頼までの進め方</h2>
+          <p>
+            まだ依頼内容が固まっていない段階でも問題ありません。
+            現状の確認と方向性の整理から進めます。
+          </p>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-step">
+            <strong>1</strong>
+            <h3>お問い合わせ</h3>
+            <p>まずは現状の課題や、気になっている点を簡単にお送りください。</p>
+          </article>
+          <article class="timeline-step">
+            <strong>2</strong>
+            <h3>現状確認</h3>
+            <p>アカウント状況、発信内容、プロフィール、お問い合わせ導線などを整理します。</p>
+          </article>
+          <article class="timeline-step">
+            <strong>3</strong>
+            <h3>方向性の整理</h3>
+            <p>誰に何をどう届けるかを整理し、優先して整えるべきポイントを明確にします。</p>
+          </article>
+          <article class="timeline-step">
+            <strong>4</strong>
+            <h3>提案・対応</h3>
+            <p>必要な支援内容を提案し、投稿・文章・導線の改善へ進めます。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">よくあるご質問</span>
+          <h2>ご相談前に不安になりやすい点</h2>
+        </div>
+
+        <div class="faq-grid">
+          <details class="faq-item" open>
+            <summary>まだ依頼内容が固まっていなくても相談できますか？</summary>
+            <p>はい。何が課題か分からない段階でも問題ありません。現状の整理から一緒に進めます。</p>
+          </details>
+          <details class="faq-item">
+            <summary>投稿だけでなく、プロフィールや導線も見てもらえますか？</summary>
+            <p>対応可能です。Instagram単体ではなく、問い合わせや申込みにつながる流れまで含めて確認します。</p>
+          </details>
+          <details class="faq-item">
+            <summary>相談だけでも大丈夫ですか？</summary>
+            <p>大丈夫です。いきなり依頼前提でなくても構いません。まずは現状や方向性の相談から始められます。</p>
+          </details>
+          <details class="faq-item">
+            <summary>高校生への依頼に不安があります。</summary>
+            <p>自然な不安だと思います。だからこそ、年齢ではなく、課題整理・言語化・進め方の明確さで判断いただけるよう意識しています。誇張した表現はせず、必要なことを正直にお伝えします。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="cta-box" style="margin-bottom:24px;">
+          <div>
+            <span class="label">お問い合わせ</span>
+            <h2 style="margin-top:16px;">Instagram運用を、ただ続けるだけでなく<br>相談につながる形へ整えたい方へ。</h2>
+            <p>現状の課題整理からでも問題ありません。まずは、今どのような点で悩んでいるかをお聞かせください。</p>
+          </div>
+          <a class="btn btn-primary" href="#contactForm">フォームから相談する</a>
+        </div>
+
+        <div class="contact-grid">
+          <section class="contact-card">
+            <h3>お問い合わせフォーム</h3>
+            <p class="form-note">送信ボタンを押すと、お使いのメールソフトが起動します。起動しない場合は、「内容をコピーする」からご利用ください。</p>
+
+            <form class="contact-form" id="contactForm" novalidate>
+              <div class="field">
+                <label for="name">お名前</label>
+                <input id="name" name="name" type="text" placeholder="例：山田 太郎" required />
+              </div>
+
+              <div class="field">
+                <label for="company">会社名・屋号</label>
+                <input id="company" name="company" type="text" placeholder="例：○○サロン / ○○株式会社" />
+              </div>
+
+              <div class="field">
+                <label for="topic">ご相談項目</label>
+                <select id="topic" name="topic" required>
+                  <option value="" selected disabled>選択してください</option>
+                  <option value="Instagram運用について相談したい">Instagram運用について相談したい</option>
+                  <option value="プロフィール改善について相談したい">プロフィール改善について相談したい</option>
+                  <option value="投稿企画・ライティングについて相談したい">投稿企画・ライティングについて相談したい</option>
+                  <option value="導線設計について相談したい">導線設計について相談したい</option>
+                  <option value="その他の相談">その他の相談</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="message">ご相談内容</label>
+                <textarea id="message" name="message" placeholder="現在の課題、運用状況、相談したい内容などをご記入ください。" required></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button class="btn btn-primary" type="submit">内容を確認して送信する</button>
+                <button class="btn btn-secondary" type="button" id="copyBtn">内容をコピーする</button>
+              </div>
+
+              <div class="contact-note" id="formNotice" role="status" aria-live="polite">※ 個人情報保護のため、送信先メールアドレスはページ上に表示していません。</div>
+            </form>
+          </section>
+
+          <aside class="contact-side">
+            <div class="contact-card">
+              <h3>こんなご相談に向いています</h3>
+              <ul class="faq-list">
+                <li>何を発信すればよいか整理したい</li>
+                <li>投稿しているのに相談につながらない</li>
+                <li>プロフィールやCTAを見直したい</li>
+                <li>発信の方向性を整えたい</li>
+              </ul>
+            </div>
+
+            <div class="contact-card">
+              <h3>ご相談時にあるとスムーズな情報</h3>
+              <ul class="faq-list">
+                <li>現在のInstagramアカウントURL</li>
+                <li>主なサービス内容やターゲット</li>
+                <li>今感じている課題や悩み</li>
+                <li>相談したい優先事項</li>
+              </ul>
+            </div>
+
+            <div class="contact-card">
+              <h3>メールが開かない場合</h3>
+              <p>「内容をコピーする」を押すと、入力内容をそのままコピーできます。ご利用のメールに貼り付けてご連絡ください。</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© 2026 あらた</div>
+      <div>Instagram運用 × ライティング × 導線設計</div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const siteNav = document.getElementById('siteNav');
+    const navLinks = [...document.querySelectorAll('.nav a')];
+    const sections = [...document.querySelectorAll('main section[id]')];
+
+    if (menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        const isOpen = siteNav.classList.toggle('open');
+        menuBtn.classList.toggle('open', isOpen);
+        menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    }
+
+    function closeMenu() {
+      siteNav.classList.remove('open');
+      menuBtn.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeMenu();
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (window.innerWidth > 820) return;
+      if (!siteNav.classList.contains('open')) return;
+      if (siteNav.contains(event.target) || menuBtn.contains(event.target)) return;
+      closeMenu();
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 820) {
+        closeMenu();
+      }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
+        }
+      });
+    }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
+
+    sections.forEach(section => observer.observe(section));
+
+    const contactForm = document.getElementById('contactForm');
+    const copyBtn = document.getElementById('copyBtn');
+    const formNotice = document.getElementById('formNotice');
+    const mailCodes = [97,114,97,116,97,46,110,105,115,104,105,64,105,99,108,111,117,100,46,99,111,109];
+    const mailToAddress = String.fromCharCode(...mailCodes);
+
+    function buildMailBody() {
+      const name = document.getElementById('name').value.trim();
+      const company = document.getElementById('company').value.trim();
+      const topic = document.getElementById('topic').value;
+      const message = document.getElementById('message').value.trim();
+
+      return (
+`【お名前】\n${name}\n\n` +
+`【会社名・屋号】\n${company || '未入力'}\n\n` +
+`【ご相談項目】\n${topic}\n\n` +
+`【ご相談内容】\n${message}`
+      );
+    }
+
+    function validateForm() {
+      const name = document.getElementById('name').value.trim();
+      const topic = document.getElementById('topic').value;
+      const message = document.getElementById('message').value.trim();
+      return Boolean(name && topic && message);
+    }
+
+    contactForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      if (!validateForm()) {
+        formNotice.textContent = '必須項目を入力してください。';
+        return;
+      }
+
+      const subject = encodeURIComponent('Instagram運用のご相談');
+      const body = encodeURIComponent(buildMailBody());
+      window.location.href = `mailto:${mailToAddress}?subject=${subject}&body=${body}`;
+      formNotice.textContent = 'メールソフトが開かない場合は、「内容をコピーする」を押してご利用ください。';
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      if (!validateForm()) {
+        formNotice.textContent = 'コピーする前に、必須項目を入力してください。';
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(buildMailBody());
+        formNotice.textContent = '入力内容をコピーしました。ご利用のメールに貼り付けてお送りください。';
+      } catch (error) {
+        formNotice.textContent = 'コピーに失敗しました。入力内容を手動でコピーしてご利用ください。';
+      }
+    });
+  </script>
+</body>
+</html>
